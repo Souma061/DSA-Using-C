@@ -66,7 +66,7 @@ void insertAtBeginning()
   head = newNode;
 }
 
-void inserAtEnd()
+void insertAtEnd()
 {
   Node *newNode = (Node *)malloc(sizeof(Node));
   printf("Enter data: ");
@@ -183,23 +183,162 @@ void insertAfterPosition()
     }
   }
 }
+void deleteAtBeginning()
+{
+  Node *temp = head;
+  if (head == NULL)
+  {
+    printf("List is empty\n");
+    return;
+  }
+  head = head->next;
+  head->prev = NULL;
+  free(temp);
+}
+void deleteAtEnd()
+{
+  Node *temp = head;
+  if (head == NULL)
+  {
+    printf("List is empty\n");
+    return;
+  }
+  else
+  {
+    temp = tail;
+    tail = tail->prev;
+    tail->next = NULL;
+    free(temp);
+  }
+}
+void deleteAtPosition()
+{
+  int pos, i = 1;
+  Node *temp = head;
+
+  if (head == NULL)
+  {
+    printf("List is empty\n");
+    return;
+  }
+
+  printf("Enter position: ");
+  scanf("%d", &pos);
+
+  if (pos < 1)
+  {
+    printf("Invalid position\n");
+    return;
+  }
+
+  
+  if (pos == 1)
+  {
+    if (head == tail)
+    {
+      free(head);
+      head = tail = NULL;
+    }
+    else
+    {
+      head = head->next;
+      head->prev = NULL;
+      free(temp);
+    }
+    return;
+  }
+
+  // move to desired position
+  while (i < pos && temp != NULL)
+  {
+    temp = temp->next;
+    i++;
+  }
+
+  if (temp == NULL)
+  {
+    printf("Position out of bounds\n");
+    return;
+  }
+
+  // delete last node
+  if (temp == tail)
+  {
+    tail = tail->prev;
+    tail->next = NULL;
+    free(temp);
+  }
+  else
+  {
+    temp->prev->next = temp->next;
+    temp->next->prev = temp->prev;
+    free(temp);
+  }
+}
+
 int main()
 {
-  create();
-  printf("Doubly Linked List: ");
-  display();
-  insertAtBeginning();
-  printf("\nAfter Insertion at Beginning: ");
-  display();
-  inserAtEnd();
-  printf("\nAfter Insertion at End: ");
-  display();
-  insertAtPosition();
-  printf("\nAfter Insertion at Position: ");
-  display();
-  insertAfterPosition();
-  printf("\nAfter Insertion after Position: ");
-  display();
+  int choice;
+
+  create(); // create list once
+
+  while (1)
+  {
+    printf("\n\n---- DOUBLY LINKED LIST MENU ----\n");
+    printf("1. Display\n");
+    printf("2. Insert at Beginning\n");
+    printf("3. Insert at End\n");
+    printf("4. Insert at Position\n");
+    printf("5. Insert After Position\n");
+    printf("6. Delete at Beginning\n");
+    printf("7. Delete at End\n");
+    printf("8. Delete at Position\n");
+    printf("0. Exit\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+    case 1:
+      display();
+      break;
+
+    case 2:
+      insertAtBeginning();
+      break;
+
+    case 3:
+      insertAtEnd();
+      break;
+
+    case 4:
+      insertAtPosition();
+      break;
+
+    case 5:
+      insertAfterPosition();
+      break;
+
+    case 6:
+      deleteAtBeginning();
+      break;
+
+    case 7:
+      deleteAtEnd();
+      break;
+    case 8:
+      deleteAtPosition();
+      break;
+
+    case 0:
+      printf("Exiting...\n");
+      exit(0);
+
+    default:
+      printf("Invalid choice\n");
+    }
+  }
+
   return 0;
 }
 
