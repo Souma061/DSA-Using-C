@@ -231,7 +231,6 @@ void deleteAtPosition()
     return;
   }
 
-  
   if (pos == 1)
   {
     if (head == tail)
@@ -276,6 +275,33 @@ void deleteAtPosition()
   }
 }
 
+void reverse()
+{
+  Node *current = head;
+  Node *temp = NULL;
+
+  if (head == NULL)
+  {
+    printf("List is empty\n");
+    return;
+  }
+
+  while (current != NULL)
+  {
+    // Swap prev and next
+    temp = current->prev;
+    current->prev = current->next;
+    current->next = temp;
+
+    // Move forward (actually backward now)
+    current = current->prev;
+  }
+
+  // Update head
+  if (temp != NULL)
+    head = temp->prev;
+}
+
 int main()
 {
   int choice;
@@ -293,6 +319,7 @@ int main()
     printf("6. Delete at Beginning\n");
     printf("7. Delete at End\n");
     printf("8. Delete at Position\n");
+    printf("9. Reverse the List\n");
     printf("0. Exit\n");
     printf("Enter your choice: ");
     scanf("%d", &choice);
@@ -333,6 +360,9 @@ int main()
     case 0:
       printf("Exiting...\n");
       exit(0);
+    case 9:
+      reverse();
+      break;
 
     default:
       printf("Invalid choice\n");
