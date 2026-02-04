@@ -211,7 +211,7 @@ void deleteAtEnd()
     free(temp);
   }
 }
-void deleteAtPosition()
+void deleteAtPositions()
 {
   int pos, i = 1;
   Node *temp = head;
@@ -354,7 +354,7 @@ int main()
       deleteAtEnd();
       break;
     case 8:
-      deleteAtPosition();
+      deleteAtPositions();
       break;
 
     case 0:
