@@ -8,6 +8,7 @@ typedef struct Node
 } Node;
 
 Node *head;
+Node *tail;
 
 void create()
 {
@@ -16,21 +17,35 @@ void create()
   int choice = 1;
   while (choice)
   {
+    // Node *newNode = (Node *)malloc(sizeof(Node));
+    // printf("Enter data: ");
+    // scanf("%d", &newNode->data);
+    // newNode->next = NULL;
+    // if (head == NULL)
+    // {
+    //   head = temp = newNode;
+    //   temp->next = head;
+    // }
+    // else
+    // {
+    //   temp->next = newNode;
+    //   temp = newNode;
+    //   temp->next = head;
+    // }
+    // printf("Do you want to continue (0/1): ");
+    // scanf("%d", &choice);
     Node *newNode = (Node *)malloc(sizeof(Node));
     printf("Enter data: ");
     scanf("%d", &newNode->data);
     newNode->next = NULL;
-    if (head == NULL)
-    {
-      head = temp = newNode;
-      temp->next = head;
+    if(head == NULL) {
+      head = tail = newNode;
+
+    } else {
+      tail->next = newNode;
+      tail = newNode;
     }
-    else
-    {
-      temp->next = newNode;
-      temp = newNode;
-      temp->next = head;
-    }
+    tail->next = head;
     printf("Do you want to continue (0/1): ");
     scanf("%d", &choice);
   }

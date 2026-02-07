@@ -1,0 +1,10 @@
+# executables
+*.out
+*.exe
+Dll
+
+# node junk
+node_modules/
+
+# vscode
+.vscode/
