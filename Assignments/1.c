@@ -1,6 +1,4 @@
 #include<stdio.h>
-
-
 void Binary_Search(int a[], int n, int item) {
   int l = 0, u = n - 1, mid;
   while(l <= u) {

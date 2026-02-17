@@ -87,25 +87,31 @@ int main()
   {
     scanf("%d", &a[i]);
   }
-  printf("Choose Sorting Method:\n");
-  printf("1. Bubble Sort\n");
-  printf("2. Selection Sort\n");
-  printf("3. Insertion Sort\n");
-  printf("Enter your choice: ");
-  scanf("%d", &choice);
-
-  switch (choice)
+  while (1)
   {
-  case 1:
-    bubble_sort(a, n);
-    break;
-  case 2:
-    selection_sort(a, n);
-    break;
-  case 3:
-    insertion_sort(a, n);
-    break;
-  default:
-    printf("Invalid choice\n");
+    printf("Choose Sorting Method:\n");
+    printf("1. Bubble Sort\n");
+    printf("2. Selection Sort\n");
+    printf("3. Insertion Sort\n");
+    printf("4. Exit\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+    case 1:
+      bubble_sort(a, n);
+      break;
+    case 2:
+      selection_sort(a, n);
+      break;
+    case 3:
+      insertion_sort(a, n);
+      break;
+    case 4:
+      return 0;
+    default:
+      printf("Invalid choice\n");
+    }
   }
 }
