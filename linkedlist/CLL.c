@@ -202,7 +202,8 @@ void insertAtPosition()
   }
 }
 
-void deleteAtPosition(){
+void deleteAtPosition()
+{
   int pos;
   printf("Enter position to delete: ");
   scanf("%d", &pos);
@@ -223,24 +224,47 @@ void deleteAtPosition(){
     return;
   }
   Node *temp = head;
-  for(int i =1 ; i < pos - 1; i ++) {
-    if(temp->next == head) {
+  for (int i = 1; i < pos - 1; i++)
+  {
+    if (temp->next == head)
+    {
       printf("Position out of bounds\n");
       return;
     }
     temp = temp->next;
-
   }
   Node *toDelete = temp->next;
-  if(toDelete == head) {
+  if (toDelete == head)
+  {
     printf("Position out of bounds\n");
     return;
   }
   temp->next = toDelete->next;
-  if(toDelete == tail) {
+  if (toDelete == tail)
+  {
     tail = temp;
   }
   free(toDelete);
+}
+
+void reverse() {
+  if( head == NULL || head->next == head) {
+    return;
+  }
+  Node *prev = tail;
+  Node *current = head;
+  Node *next;
+
+  do{
+    next = current->next;
+    current->next = prev;
+
+    prev = current;
+    current = next;
+
+  } while(current != head);
+  tail = head;
+  head = prev;
 }
 void display()
 {
@@ -301,6 +325,9 @@ int main()
       break;
     case 6:
       deleteAtEnd();
+      break;
+    case 8:
+      reverse();
       break;
     case 0:
       printf("Exiting...\n");
